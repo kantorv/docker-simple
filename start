@@ -1,5 +1,5 @@
 
-sudo docker rm -f forextest_mongo testrepo 
+sudo docker rm -f  testrepo 
 
 APP_ROOT=$(pwd)
 
