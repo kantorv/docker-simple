@@ -1,0 +1,25 @@
+
+sudo docker rm -f forextest_mongo testrepo 
+
+APP_ROOT=$(pwd)
+
+
+CONT_CID=`sudo docker run -i -d -t -p 80:80  --name testrepo lalala/testrepo`
+
+CONT_IP=$(sudo docker inspect $CONT_CID | grep IPAddress | cut -d '"' -f 4)
+
+
+echo "container ip: $CONT_IP"
+
+
+echo "connecting to container..."
+RET=1
+until [ ${RET} -eq 0 ]; do
+    ssh  -o StrictHostKeyChecking=no -i $APP_ROOT/sshkey.pem  root@$CONT_IP "supervisorctl status"
+    RET=$?
+    sleep 1
+done
+echo "container connected"
+
+
+
