@@ -4,7 +4,7 @@ sudo docker rm -f  testrepo
 APP_ROOT=$(pwd)
 
 
-CONT_CID=`sudo docker run -i -d -t -p 80:80  --name testrepo lalala/testrepo`
+CONT_CID=`sudo docker run -i -d -t  --name testrepo lalala/testrepo`
 
 CONT_IP=$(sudo docker inspect $CONT_CID | grep IPAddress | cut -d '"' -f 4)
 
